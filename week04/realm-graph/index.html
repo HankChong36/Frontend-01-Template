@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
+    <title>Realm-Graph</title>
+    <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.g6-3.4.9/dist/g6.min.js"></script>
+    <script type="text/javascript" src="realm-json.js"></script>
+    <script type="text/javascript" src="graph.js"></script>
+  </head>
+  <body>
+    <div id="container" style="width: 100vw; height: 100vh;"></div>
+  </body>
+  <script lang="javascirpt">
+    window.onload = function(){
+      const data = RealmUtil.getJSON()
+      const width = document.getElementById("container").scrollWidth;
+      const height = document.getElementById("container").scrollHeight;
+      const graph = new Graph(width,height)
+      graph.render(data)
+    }
+  </script>
+</html>
