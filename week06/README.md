@@ -83,17 +83,14 @@ while(input){
 }
 ```  
 
-[找到 abcdef (Mealy 状态机)](./mealy-status-meachine.js)
-
-
+- [找到 abcdef (Mealy 状态机)](./mealy-status-meachine.js)
 
 
 
 
 #### 作业：
-[状态机处理 abababx](./mealy-status-meachine.js)    
-####  [easy-browser](./../easy-browser)
-
+- [状态机处理 abababx](./mealy-status-meachine.js)    
+- [easy-browser](./../easy-browser)
 
 
 
