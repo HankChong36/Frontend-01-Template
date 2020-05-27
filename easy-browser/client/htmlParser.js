@@ -1,4 +1,5 @@
 const CSSParser = require("./cssParser");
+const layout = require("./layout");
 const EOF = Symbol("EOF");
 
 module.exports = class HtmlParser {
@@ -234,7 +235,7 @@ module.exports = class HtmlParser {
         type: "EOF"
       });
       return this.parseAfterAttributeValueQuoted;
-    } else if ("\t\n\r ".indexOf(c)) {
+    } else if ("\t\n\r ".indexOf(c) > -1) {
       return this.parseBeforeAttributeName;
     } else if (c === "/") {
       return this.parseSelfClosingStartTag;
@@ -343,6 +344,7 @@ module.exports = class HtmlParser {
         if (top.tagName === "style") {
           this.cssParser.addRules(top.children[0].content);
         }
+        layout(top);
         this.stack.pop();
       } else {
         throw new Error(`the end tag doesn\`t match the ${top.tagName}!`);

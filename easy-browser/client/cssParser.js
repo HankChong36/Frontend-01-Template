@@ -34,6 +34,19 @@ module.exports = class CSSParser {
         }
       }
     }
+
+    for (const attr of element.attributes) {
+      if (attr.name !== "style") continue;
+      const { computedStyle } = element;
+      const ast = css.parse(`*{${attr.value}}`);
+      const { declarations } = ast.stylesheet.rules[0];
+      for (const declaration of declarations) {
+        computedStyle[declaration.property] = {
+          value: declaration.value,
+          specificity: [0, 0, 0, 1]
+        };
+      }
+    }
   }
 
   computePriority(selector) {
@@ -114,7 +127,7 @@ module.exports = class CSSParser {
         if (match[0] === "#") {
           matched = attrs.id === name;
         } else if (match[0] === ".") {
-          const classList = attrs.class.split(" ");
+          const classList = (attrs.class && attrs.class.split(" ")) || [];
           matched = classList.indexOf(name) >= 0;
         } else if (match[0] === "[") {
           name = name.substring(0, name.length - 1);
