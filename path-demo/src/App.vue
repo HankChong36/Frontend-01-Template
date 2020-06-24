@@ -80,7 +80,6 @@ export default {
       let y = Math.floor((e.offsetY * 2) / rect);
       let idx = y * this.width + x;
       this.map[idx] = isClear ? -1 : -2;
-      console.log(x, y);
       this.fill([x, y], isClear ? "#fff" : "#000");
 
       const mousemoveEvent = e => {
@@ -213,9 +212,11 @@ export default {
             <InputNumber :max="100" :min="0" v-model="endPoint.y" />
           </FormItem>
           <FormItem>
-            <Button @click="save">保存路径</Button>
-            <Button @click="clear">清除路径</Button>
-            <Button @click="findPath">开始寻路</Button>
+            <ButtonGroup>
+              <Button type="primary" @click="save">保存路径</Button>
+              <Button type="primary" @click="clear">清除路径</Button>
+              <Button type="primary" @click="findPath">开始寻路</Button>
+            </ButtonGroup>
           </FormItem>
         </Form>
       </div>
